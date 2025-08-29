@@ -2,6 +2,8 @@
 if(!defined('NOMBRE_SITIO')){
     include_once(__DIR__ . '/../config/config.php');
 }
+
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +11,7 @@ if(!defined('NOMBRE_SITIO')){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sitio Web 2</title>
-    <link rel="stylesheet" href=" <?php echo URL_BASE ?>/assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="<?php echo URL_BASE ?>/assets/css/bootstrap.min.css"/>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -24,8 +26,21 @@ if(!defined('NOMBRE_SITIO')){
                 <a class="nav-link" href="<?php echo URL_BASE?>pages/productos.php">Productos</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="<?php echo URL_BASE?>pages/carrito.php">Ver mi Carrito</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="<?php echo URL_BASE?>pages/nosotros.php">Nosotros</a>
             </li>
+
+            <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "ok"){ ?>
+                <li class="nav-item">
+                    <a class="nav-link text-danger" href="<?php echo URL_BASE?>cerrarSesion.php">Cerrar sesión</a>
+                </li>
+            <?php } else { ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo URL_BASE?>iniciosesion.php">Iniciar sesión</a>
+                </li>
+            <?php } ?>
         </ul>
     </nav>
     <br>
